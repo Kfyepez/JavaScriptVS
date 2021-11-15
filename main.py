@@ -132,9 +132,10 @@ lexer = lex.lex()
 
 # Test it out
 data = ''' 
+  var prueba="hola"
 for (let i = 0; i < 9; i++){}
   if 4>5 && 5<4:
-    return true
+    return true || function(hola,adios)
     4.5 +25'''
  
  # Give the lexer some input
