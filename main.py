@@ -12,7 +12,15 @@ reserved = {
     'do':'DO', 
     'else':'ELSE', 
     'finally':'FINALLY',
-  
+    # Andrea Soriano
+    'for': 'FOR',
+    'function': 'FUNCTION',
+    'in': 'IN',
+    'instanceof': 'INSTANCEOF',
+    'new': 'NEW',
+    'return': 'RETURN',
+    'switch': 'SWITCH',
+    'this': 'THIS',
 }
 
  # List of token names.   This is always required
@@ -31,6 +39,18 @@ tokens = (
     "IGUAL",#
     "DIGUAL",#
     "NOIGUAL",#
+ # Andrea Soriano
+    "MAYOR",  #
+    "MENOR",  #
+    "MAYIGUAL",  #
+    "MENIGUAL",  #
+    "ISNEGADO",
+    "PUNTOYCOMA",  #
+    "DSUMA",  #
+    "DRESTA",  #
+    "LIZQ",  #
+    "LDER",  #
+
 ) + tuple(reserved.values())
  
  # Regular expression rules for simple tokens
@@ -44,7 +64,17 @@ t_MULTI = r"\*"
 t_DIV = r"/"
 t_MOD = r"%"
 t_IGUAL = r"="
-
+#Andrea Soriano
+t_DIGUAL = r"=="
+t_NOIGUAL = "!="
+t_MAYOR = r">"
+t_MENOR = r"<"
+t_MAYIGUAL = r">="
+t_MENIGUAL = r"<="
+t_PUNTOYCOMA = r";"
+t_DSUMA= r"\+\+"
+t_DRESTA= r"--"
+t_CIZQ = r"\["
 
 #t_VARIABLE = r'[a-z]+'
  
