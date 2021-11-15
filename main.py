@@ -21,6 +21,16 @@ reserved = {
     'return': 'RETURN',
     'switch': 'SWITCH',
     'this': 'THIS',
+    #Kenny Yépez 
+    'throw':'THROW', 
+    'try':'TRY', 
+    'typeof':'TYPEOF', 
+    'var':'VAR', 
+    'void':'VOID', 
+    'while':'WHILE', 
+    'with':'WITH',
+    'let':'LET',
+    'const':'CONST'
 }
 
  # List of token names.   This is always required
@@ -50,6 +60,16 @@ tokens = (
     "DRESTA",  #
     "LIZQ",  #
     "LDER",  #
+    #Kenny Yépez
+    "CIZQ",#
+    "CDER",#
+    "PIZQ",#
+    "PDER",#
+    "COMILLAS",
+    "DOSPUNTOS",#
+    "COMA",#
+    "DAMPERSAND",#
+    "DTUBO"#
 
 ) + tuple(reserved.values())
  
@@ -75,6 +95,16 @@ t_PUNTOYCOMA = r";"
 t_DSUMA= r"\+\+"
 t_DRESTA= r"--"
 t_CIZQ = r"\["
+#Kenny Yépez
+t_CDER = r"\]"
+t_LIZQ = r"\{"
+t_LDER = r"\}"
+t_PIZQ = r"\("
+t_PDER = r"\)"
+t_DOSPUNTOS = r"\:"
+t_COMA = r","
+t_DAMPERSAND=r'&&'
+t_DTUBO="\|\|"
 
 #t_VARIABLE = r'[a-z]+'
  
