@@ -1,17 +1,49 @@
 import ply.lex as lex
  
 reserved = {
-  
+  #Santiago Tumbaco
+    'if' : 'IF',
+    'break':'BREAK', 
+    'case': 'CASE', 
+    'catch': 'CATCH', 
+    'continue':'CONTINUE',
+    'default':'DEFAULT',
+    'delete': 'DELETE',
+    'do':'DO', 
+    'else':'ELSE', 
+    'finally':'FINALLY',
   
 }
 
  # List of token names.   This is always required
 tokens = (
- 
+ #Santiago Tumbaco
+    "VARIABLE",#
+    "ENTERO",#
+    "DOUBLE",#
+    "STRING",
+    "BOOL",#
+    "SUMA",#
+    "RESTA",#
+    "MULTI",#
+    "DIV",#
+    "MOD",#
+    "IGUAL",#
+    "DIGUAL",#
+    "NOIGUAL",#
 ) + tuple(reserved.values())
  
  # Regular expression rules for simple tokens
-
+#Santiago Tumbaco
+t_STRING = r'("[^"]*"|\'[^\']*\')'
+t_DOUBLE = r'\d+\.\d+'
+t_ENTERO = r'\d'
+t_SUMA = r"\+"
+t_RESTA = r"-"
+t_MULTI = r"\*"
+t_DIV = r"/"
+t_MOD = r"%"
+t_IGUAL = r"="
 
 
 #t_VARIABLE = r'[a-z]+'
