@@ -262,3 +262,83 @@ def p_cases(p):
     ''' cases : CASE VARIABLE DOSPUNTOS instrucciones
               | CASE VARIABLE DOSPUNTOS instrucciones cases
               | DEFAULT DOSPUNTOS instrucciones'''
+
+
+
+#Kenny Yepez
+
+def p_throw(p):
+  ''' throw : THROW VARIABLE PUNTOYCOMA
+  '''
+  
+def p_trycatch(p):
+  '''trycatch : TRY LIZQ instrucciones LDER CATCH PIZQ VARIABLE PDER LIZQ instrucciones LDER
+              | TRY LIZQ instrucciones LDER FINALLY LIZQ instrucciones LDER
+              | TRY LIZQ instrucciones LDER CATCH PIZQ VARIABLE PDER LIZQ instrucciones LDER FINALLY LIZQ instrucciones LDER'''
+
+def p_asignacion(p):
+  '''asignacion : VARIABLE IGUAL expression
+                | VARIABLE IGUAL comparacion
+                | VARIABLE IGUAL valor 
+                | VARIABLE IGUAL llamarfuncion'''
+
+def p_comparacion(p):
+  '''comparacion : expression comparador expression
+                 | expression comparador expression DAMPERSAND comparacion
+                 | expression comparador expression DTUBO comparacion
+                 | STRING DIGUAL STRING
+                 | VARIABLE comparador ENTERO
+                 '''
+
+def p_comparador(p):
+  '''comparador : MAYOR
+                | MENOR
+                | MAYIGUAL
+                | MENIGUAL
+                | DIGUAL
+                | NOIGUAL'''
+
+def p_operadores(p):
+  '''operadores : VARIABLE DSUMA
+                | VARIABLE DRESTA '''
+
+def p_expression_suma(p):
+  '''expression : expression SUMA term
+                | VARIABLE SUMA VARIABLE'''
+  p[0] = p[1] + p[3]
+ 
+def p_expression_resta(p):
+  '''expression : expression RESTA term
+                | VARIABLE RESTA VARIABLE'''
+  p[0] = p[1] - p[3]
+ 
+def p_expression_term(p):
+  '''expression : term
+                | VARIABLE'''
+  p[0] = p[1]
+ 
+def p_term_multi(p):
+  '''term : term MULTI factor
+          | VARIABLE MULTI VARIABLE'''
+  p[0] = p[1] * p[3]
+ 
+def p_term_div(p):
+  '''term : term DIV factor
+          | VARIABLE RESTA VARIABLE'''
+  p[0] = p[1] / p[3]
+ 
+def p_term_factor(p):
+  'term : factor'
+  p[0] = p[1]
+
+def p_factor_num(p):
+  ''' factor : ENTERO
+             | FLOAT '''
+  p[0] = p[1]
+ 
+def p_expression_parentesis(p):
+  'expression : PIZQ expression PDER '
+  p[0] = p[2]
+
+def p_expression_llaves(p):
+  'expression : LIZQ expression LDER '
