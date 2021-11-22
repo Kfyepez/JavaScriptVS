@@ -342,3 +342,99 @@ def p_expression_parentesis(p):
 
 def p_expression_llaves(p):
   'expression : LIZQ expression LDER '
+def p_funcion_conarg(p):
+  '''funcion : FUNCTION VARIABLE PIZQ argumentos PDER LIZQ instrucciones LDER
+             | FUNCTION VARIABLE PIZQ argumentos PDER LIZQ LDER '''
+
+def p_funcion_sinarg(p):
+  '''funcion : FUNCTION VARIABLE PIZQ PDER LIZQ instrucciones LDER
+             | FUNCTION VARIABLE PIZQ PDER LIZQ LDER '''
+
+def p_llamar_funcion(p):
+  ''' llamarfuncion : VARIABLE PIZQ argumentos PDER PUNTOYCOMA
+                    | VARIABLE PIZQ PDER PUNTOYCOMA '''
+
+def p_argumentos(p):
+  '''argumentos : VARIABLE
+                | VARIABLE COMA argumentos '''
+
+def p_constructor_conarg(p):
+  '''constructor : CONSTRUCTOR PIZQ argumentos PDER LIZQ metodo_cuerpo_class LDER'''
+  
+def p_constructor_sinarg(p):
+  '''constructor : CONSTRUCTOR PIZQ PDER LIZQ metodo_cuerpo_class LDER 
+  | CONSTRUCTOR PIZQ PDER LIZQ LDER '''
+
+
+def p_var_class(p):
+  '''var_class : THIS PUNTO VARIABLE
+               | THIS PUNTO VARIABLE IGUAL valor
+               | THIS PUNTO VARIABLE IGUAL VARIABLE '''
+
+def p_metodo_cuerpo_class(p):
+  '''metodo_cuerpo_class : cuerpo 
+                            | var_class 
+                            | metodo_cuerpo_class '''
+
+def p_metodos_class(p):
+  ''' metodos_class : funcion 
+                    | funcion metodos_class'''
+
+def p_cuerpo_class(p):
+  ''' cuerpo_class : metodos_class 
+                   | constructor 
+                   | constructor metodos_class '''
+
+def p_def_clase(p):
+  ''' def_clase : CLASS VARIABLE LIZQ cuerpo_class LDER
+                |  CLASS VARIABLE LIZQ LDER'''
+
+# Error rule for syntax errors
+def p_error(p):
+  print("Error sintáctico!")
+ 
+# Build the parser
+parser = yacc.yacc()
+ 
+#while True:
+#  try:
+#    s = input('calc > ')
+#  except EOFError:
+#    break
+#  if not s: continue
+#  result = parser.parse(s)
+#  print(result)
+
+
+s = '''class padre{constructor (valor){this.valor=valor} 
+function getNombre(){
+  return nombre;
+}
+function operation(valor){ 
+    let Andrea;
+    if(Andrea<5){var kenny;}
+    else if (Andrea == 5){var nando;}
+    else{const santi = 5;}
+    for(let i=0;i<5;i++){
+      var andrea;
+    }
+    do{
+      var santi;
+    }
+    while(3<2);
+    operation();
+    let kenny;
+    try{
+      var andrea;
+    } catch(error){var kenny;}
+    finally{var santi;}
+    
+}
+} 
+      '''
+print(parser.parse(s))
+while True:
+  tok = parser.token()
+  if not tok: 
+    break      # No more input
+  print(tok)
