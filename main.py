@@ -157,3 +157,108 @@ while True:
     if not tok:
         break  # No more input
     print(tok)
+
+
+# analizador sintactico
+# Andrea Soriano
+def p_cuerpo(p):
+    ''' cuerpo : instrucciones
+               | funcion
+               | estrcontrol
+               | def_clase
+               | constructor
+               |  '''
+
+
+def p_instrucciones(p):
+    '''instrucciones : instruccion PUNTOYCOMA
+                      | instruccion PUNTOYCOMA instrucciones
+                      | BREAK PUNTOYCOMA
+                      | CONTINUE PUNTOYCOMA
+                      | RETURN VARIABLE PUNTOYCOMA
+                      | TYPEOF VARIABLE
+                      | VARIABLE INSTANCEOF VARIABLE
+                      | estrcontrol
+                      | estrcontrol instrucciones
+                      | llamarfuncion
+                      | llamarfuncion instrucciones
+                      | trycatch
+                      | trycatch instrucciones'''
+
+
+def p_instruccion(p):
+    '''instruccion : asignacion
+                     | expression
+                     | comparacion
+                     | declaracion
+                     | declaasig
+                     | operadores '''
+
+
+def p_declaracion(p):
+    '''declaracion : VAR VARIABLE
+                   | LET VARIABLE'''
+
+
+def p_declaasig(p):
+    ''' declaasig : VAR asignacion
+                  | LET asignacion
+                  | CONST asignacion '''
+
+
+def p_estr_control(p):
+    '''estrcontrol : if
+                   | for
+                   | while
+                   | dowhile
+                   | switch '''
+
+
+def p_valor(p):
+    ''' valor : ENTERO
+              | FLOAT
+              | STRING
+              | BOOL '''
+
+
+def p_if(p):
+    ''' if : IF PIZQ comparacion PDER LIZQ instrucciones LDER
+           | IF PIZQ comparacion PDER LIZQ instrucciones LDER elseif
+           | IF PIZQ comparacion PDER LIZQ instrucciones LDER else
+           '''
+
+
+def p_elseif(p):
+    ''' elseif : ELSE IF PIZQ comparacion PDER LIZQ instrucciones LDER
+           | ELSE IF PIZQ comparacion PDER LIZQ instrucciones LDER elseif
+           | ELSE IF PIZQ comparacion PDER LIZQ instrucciones LDER else
+           '''
+
+
+def p_else(p):
+    '''else : ELSE LIZQ instrucciones LDER
+            | ELSE LIZQ LDER'''
+
+
+def p_for(p):
+    ''' for : FOR PIZQ declaasig PUNTOYCOMA comparacion PUNTOYCOMA operadores PDER LIZQ instrucciones LDER
+            | FOR PIZQ declaasig PUNTOYCOMA comparacion PUNTOYCOMA asignacion PDER LIZQ instrucciones LDER
+            | FOR PIZQ declaracion IN VARIABLE PDER LIZQ instrucciones LDER'''
+
+
+def p_while(p):
+    'while : WHILE PIZQ comparacion PDER LIZQ instrucciones LDER'
+
+
+def p_dowhile(p):
+    'dowhile : DO LIZQ instrucciones LDER WHILE PIZQ comparacion PDER PUNTOYCOMA'
+
+
+def p_switch(p):
+    'switch : SWITCH PIZQ VARIABLE PDER LIZQ cases LDER'
+
+
+def p_cases(p):
+    ''' cases : CASE VARIABLE DOSPUNTOS instrucciones
+              | CASE VARIABLE DOSPUNTOS instrucciones cases
+              | DEFAULT DOSPUNTOS instrucciones'''
