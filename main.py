@@ -258,7 +258,35 @@ def p_asignacion(p):
   '''asignacion : VARIABLE IGUAL expression
                 | VARIABLE IGUAL comparacion
                 | VARIABLE IGUAL valor 
-                | VARIABLE IGUAL llamarfuncion'''
+                | VARIABLE IGUAL llamarfuncion
+                | VARIABLE IGUAL dec_array'''
+
+
+# Semántico Kenny Yépez (Creación de arrays de un mismo tipo)
+def p_dec_array(p):
+  '''dec_array : CIZQ array_enteros CDER
+               | CIZQ array_flotante CDER
+               | CIZQ array_string CDER
+               | CIZQ array_boolean CDER'''
+
+def p_array_enteros(p):
+  ''' array_enteros : ENTERO
+                    | ENTERO COMA array_enteros'''
+
+def p_array_flotante(p):
+  ''' array_flotante : FLOAT
+                    | FLOAT COMA array_flotante'''
+
+def p_array_string(p):
+  ''' array_string : STRING
+                    | STRING COMA array_string'''
+
+def p_array_boolean(p):
+  ''' array_boolean : BOOL
+                    | BOOL COMA array_boolean'''
+
+#fin de semantico Kenny Yépez
+
 
 def p_comparacion(p):
   '''comparacion : expression comparador expression
@@ -400,6 +428,8 @@ def p_castring_boolean(p):
   '''castring_boolean : STR PIZQ BOOL PDER
                       | BOOL PUNTO TOSTRING PIZQ PDER'''
 
+#Fin semantico Andrea Soriano
+
 # Error rule for syntax errors
 def p_error(p):
   print("Error sintáctico!")
@@ -430,7 +460,7 @@ parser = yacc.yacc()
 
 root = Tk()
 root.title("Javascript")
-root.geometry("1050x475")  # width height root
+root.geometry("500x300")  # width height root
 
 
 def analyze(data, resul_text_area):
@@ -509,10 +539,10 @@ boton_lexico.place(x=270, y=60, width=150, height=75)
 boton_sintactico = tkinter.Button(root, text="Analizador Sintactico", padx=40, pady=30,
                                   command=lambda: analizador_sintactico(codigo_text_area))  # padx lo hara crecer
 
-boton_sintactico.place(x=450, y=60, width=160, height=75)
+boton_sintactico.place(x=270, y=150, width=150, height=75)
 result_text_area = tkinter.Text(root, height=5, width=40)
 result_text_area.configure(relief="sunken", borderwidth=1)
-result_text_area.place(x=670, y=60, width=350, height=195)
+result_text_area.place(x=670, y=60, width=0, height=0)
 
 
 root.mainloop()

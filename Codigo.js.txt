@@ -1,0 +1,25 @@
+class padre{constructor (valor){this.valor=valor} 
+function getNombre(){
+  return nombre;
+}
+function operation(valor){ 
+    let Andrea;
+    if(Andrea<5){var kenny;}
+    else if (Andrea == 5){var nando;}
+    else{const santi = 5;}
+    for(let i=0;i<5;i++){
+      var andrea;
+    }
+    do{
+      var santi;
+    }
+    while(3<2);
+    operation();
+    let kenny;
+    try{
+      var andrea;
+    } catch(error){var kenny;}
+    finally{var santi;}
+    
+}
+} 
