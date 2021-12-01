@@ -33,7 +33,9 @@ reserved = {
     'var':'VAR', #
     'while':'WHILE', #
     'let':'LET', #
-    'const':'CONST'#
+    'const':'CONST',#
+    'String':'STR',#
+    'toString':'TOSTRING'
 }
 
  # List of token names.   This is always required
@@ -421,13 +423,12 @@ def p_castring(p):
               | castring_boolean'''
 
 def p_castring_numero(p):
-  '''castring_numero : STR PIZQ numericos PDER
-                     | PIZQ numericos PDER PUNTO TOSTRING PIZQ PDER'''
+  '''castring_numero : STR PIZQ numerico PDER
+                     | PIZQ numerico PDER PUNTO TOSTRING PIZQ PDER'''
 
 def p_castring_boolean(p):
   '''castring_boolean : STR PIZQ BOOL PDER
                       | BOOL PUNTO TOSTRING PIZQ PDER'''
-
 #Fin semantico Andrea Soriano
 
 # Error rule for syntax errors
