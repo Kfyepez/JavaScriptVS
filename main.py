@@ -1,4 +1,4 @@
-import ply.lex as lex
+﻿import ply.lex as lex
 import ply.yacc as yacc
 import tkinter
 from tkinter import Tk
@@ -206,6 +206,20 @@ def p_valor(p):
             | FLOAT 
             | STRING 
             | BOOL '''
+
+#Semantico Andrea Soriano
+def p_castring(p):
+  '''castring : castring_numero
+              | castring_boolean'''
+
+def p_castring_numero(p):
+  '''castring_numero : STR PIZQ numericos PDER
+                     | PIZQ numericos PDER PUNTO TOSTRING PIZQ PDER'''
+
+def p_castring_boolean(p):
+  '''castring_boolean : STR PIZQ BOOL PDER
+                      | BOOL PUNTO TOSTRING PIZQ PDER'''
+#Fin semantico Andrea Soriano
 
 def p_if(p):
   ''' if : IF PIZQ comparacion PDER LIZQ instrucciones LDER
