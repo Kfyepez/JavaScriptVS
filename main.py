@@ -1,4 +1,4 @@
-import ply.lex as lex
+﻿import ply.lex as lex
 import ply.yacc as yacc
 import tkinter
 from tkinter import Tk
@@ -386,6 +386,19 @@ def p_sem_numeros(p):
 
 def p_sem_string(p):
   '''sem_string : STRING SUMA STRING '''
+
+#Semantico Andrea Soriano
+def p_castring(p):
+  '''castring : castring_numero
+              | castring_boolean'''
+
+def p_castring_numero(p):
+  '''castring_numero : STR PIZQ numericos PDER
+                     | PIZQ numericos PDER PUNTO TOSTRING PIZQ PDER'''
+
+def p_castring_boolean(p):
+  '''castring_boolean : STR PIZQ BOOL PDER
+                      | BOOL PUNTO TOSTRING PIZQ PDER'''
 
 # Error rule for syntax errors
 def p_error(p):
